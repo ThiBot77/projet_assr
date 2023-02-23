@@ -1,18 +1,17 @@
-🐍 Projet Python, LPASSR, 2022-2023 🚀
+# 🐍 Projet Python, LPASSR, 2022-2023 🚀
 
 Ce script permet de verifier si les mots de passe d'une base de donnees sont presents dans la base de donnees de HIBP.
 
-Auteurs : 
+##  Auteurs : 
 
     Thibault BECHARD
     Nicolas DAWIDOWICZ
     Florian DOPP
 
-Date : 
-
+##  Date : 
 22/02/2023
 
-Pré-requis : 
+## Pré-requis : 
 
     Python 3.6 ou version ultérieure
     Bibliothèques Python :
@@ -24,44 +23,44 @@ Pré-requis :
         sqlite3
         argparse
 
-Utilisation :
+## Utilisation :
 
-python3 verify_password.py [-h] [-c CONFIG_FILE] [-d DB_FILE] [-a API_URL]
+    python3 verify_password.py [-h] [-c CONFIG_FILE] [-d DB_FILE] [-a API_URL]
 
-Options :
+### Options :
 
     -h, --help : affiche l'aide du script
     -c CONFIG_FILE, --config CONFIG_FILE : chemin vers le fichier de configuration
     -d DB_FILE, --db DB_FILE : chemin vers le fichier de base de données
     -a API_URL, --api API_URL : URL de l'API HIBP
 
-Format des fichiers :
+## Format des fichiers :
 
-Fichier de configuration : 
+### Fichier de configuration : 
 
 Le fichier de configuration doit être au format INI et contenir les sections suivantes :
 
-[db]
-path = chemin/vers/la/base/de/donnees
+    [db]
+    path = chemin/vers/la/base/de/donnees
+    
+    [api]
+    url = URL_de_l_API_HIBP
 
-[api]
-url = URL_de_l_API_HIBP
-
-Base de données :
+## Base de données :
 
 Le script prend en charge les bases de données au format CSV et SQLite3.
 
-CSV :
+### CSV :
 
 Le fichier CSV doit contenir deux colonnes, séparées par un point-virgule (;) : login et password. La première ligne du fichier doit être un en-tête et ne sera pas lue.
 
-Exemple :
+### Exemple :
 
-login;password
-john_doe;password1
-jane_doe;password2
+    login;password
+    john_doe;password1
+    jane_doe;password2
 
-SQLite3 :
+### SQLite3 :
 
 La base de données SQLite3 doit contenir une table user avec deux colonnes : login et password.
 Description du script
@@ -70,7 +69,7 @@ Le script vérifie si les mots de passe d'une base de données sont présents da
 
 Le script prend en charge les fichiers de base de données au format CSV et SQLite3.
 
-Fonctions : 
+### Fonctions : 
 
     parse_args(): analyse les arguments de ligne de commande
     load_config(config_path: str = "") -> dict: charge le fichier de configuration
@@ -78,12 +77,12 @@ Fonctions :
     check_if_pwned(api_url: str, passwd: str) -> int: vérifie si un mot de passe est compromis en utilisant l'API HIBP
     main(): fonction principale du script
 
-Options de ligne de commande : 
+### Options de ligne de commande : 
 
     -c, --config: chemin vers le fichier de configuration
     -d, --db: chemin vers le fichier de base de données
     -a, --api: URL de l'API HIBP
 
-Exemple d'utilisation : 
+### Exemple d'utilisation : 
 
-python3 verify_password.py -c config.ini -d data.csv -a https://api.pwne
+    python3 verify_password.py -c config.ini -d data.csv -a https://api.pwne
