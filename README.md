@@ -1,3 +1,4 @@
+
 # 🐍 Projet Python, LPASSR, 2022-2023 🚀
 
 Ce script permet de verifier si les mots de passe d'une base de donnees sont presents dans la base de donnees de HIBP.
@@ -69,7 +70,7 @@ Le script vérifie si les mots de passe d'une base de données sont présents da
 
 Le script prend en charge les fichiers de base de données au format CSV et SQLite3.
 
-### Fonctions : 
+## Fonctions : 
 
     parse_args(): analyse les arguments de ligne de commande
     load_config(config_path: str = "") -> dict: charge le fichier de configuration
@@ -86,3 +87,4 @@ Le script prend en charge les fichiers de base de données au format CSV et SQLi
 ### Exemple d'utilisation : 
 
     python3 verify_password.py -c config.ini -d data.csv -a https://api.pwne
+
