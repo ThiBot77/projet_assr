@@ -1,4 +1,4 @@
-Projet Python, LPASSR, 2022-2023
+🐍 Projet Python, LPASSR, 2022-2023 🚀
 
 Ce script permet de verifier si les mots de passe d'une base de donnees sont presents dans la base de donnees de HIBP.
 
