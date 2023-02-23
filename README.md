@@ -1,66 +1,89 @@
-🐍 Projet Python, LPASSR, 2022-2023 🚀
+Projet Python, LPASSR, 2022-2023
 
-Ce script permet de vérifier si les mots de passe d'une base de données sont présents dans la base de données de HIBP.
-Auteurs
+Ce script permet de verifier si les mots de passe d'une base de donnees sont presents dans la base de donnees de HIBP.
 
-    Thibault BECHARD 🧑‍💻
-    Nicolas DAWIDOWICZ 🧑‍💻
-    Florian DOPP 🧑‍💻
+Auteurs : 
 
-Fonctionnalités
+    Thibault BECHARD
+    Nicolas DAWIDOWICZ
+    Florian DOPP
 
-    Lecture d'une base de données (CSV ou SQLite3)
-    Vérification des mots de passe présents dans la base de données avec l'API HIBP
-    Affichage des résultats
+Date : 
 
-Prérequis
+22/02/2023
 
-    Python 3.x
-    Packages Python : requests
+Pré-requis : 
 
-Utilisation
+    Python 3.6 ou version ultérieure
+    Bibliothèques Python :
+        pathlib
+        configparser
+        sys
+        requests
+        hashlib
+        sqlite3
+        argparse
 
-bash
+Utilisation :
 
-python3 script.py -c config.ini -d data.csv -a https://api.hibp.com
+python3 verify_password.py [-h] [-c CONFIG_FILE] [-d DB_FILE] [-a API_URL]
 
-    -c / --config : Chemin vers le fichier de configuration (par défaut : config.ini)
-    -d / --db : Chemin vers le fichier de base de données (obligatoire)
-    -a / --api : URL de l'API HIBP (par défaut : URL dans le fichier de configuration)
+Options :
 
-Configuration
+    -h, --help : affiche l'aide du script
+    -c CONFIG_FILE, --config CONFIG_FILE : chemin vers le fichier de configuration
+    -d DB_FILE, --db DB_FILE : chemin vers le fichier de base de données
+    -a API_URL, --api API_URL : URL de l'API HIBP
 
-Le fichier de configuration config.ini contient les informations suivantes :
+Format des fichiers :
 
-ini
+Fichier de configuration : 
+
+Le fichier de configuration doit être au format INI et contenir les sections suivantes :
 
 [db]
 path = chemin/vers/la/base/de/donnees
 
 [api]
-url = https://api.hibp.com
+url = URL_de_l_API_HIBP
 
-Exemple de résultats
+Base de données :
 
-yaml
+Le script prend en charge les bases de données au format CSV et SQLite3.
 
-La base de donnees contient 10 utilisateurs
-login          pwned    count   
--------------- -------- --------
-john           1        54       
-paul           0        0        
-george         1        2013     
-ringo          0        0        
-mick           1        2875     
-keith          1        2013     
-ronnie         1        2875     
-charlie        1        2875     
-bill           1        2013     
-mickjagger     1        2875     
+CSV :
 
-Avertissement
+Le fichier CSV doit contenir deux colonnes, séparées par un point-virgule (;) : login et password. La première ligne du fichier doit être un en-tête et ne sera pas lue.
 
-Il est important de noter que ce script peut envoyer des requêtes à l'API HIBP qui peut contenir des données sensibles. Il est donc recommandé de l'utiliser uniquement dans un environnement de test et de ne pas le distribuer avec des données réelles.
-Licence
+Exemple :
 
-Ce projet est sous licence MIT. Voir le fichier LICENSE pour plus de détails.
+login;password
+john_doe;password1
+jane_doe;password2
+
+SQLite3 :
+
+La base de données SQLite3 doit contenir une table user avec deux colonnes : login et password.
+Description du script
+
+Le script vérifie si les mots de passe d'une base de données sont présents dans la base de données de HIBP (Have I Been Pwned). Il utilise l'API HIBP pour rechercher les mots de passe compromis.
+
+Le script prend en charge les fichiers de base de données au format CSV et SQLite3.
+
+Fonctions : 
+
+    parse_args(): analyse les arguments de ligne de commande
+    load_config(config_path: str = "") -> dict: charge le fichier de configuration
+    load_db(db_path: str) -> list: charge la base de données
+    check_if_pwned(api_url: str, passwd: str) -> int: vérifie si un mot de passe est compromis en utilisant l'API HIBP
+    main(): fonction principale du script
+
+Options de ligne de commande : 
+
+    -c, --config: chemin vers le fichier de configuration
+    -d, --db: chemin vers le fichier de base de données
+    -a, --api: URL de l'API HIBP
+
+Exemple d'utilisation : 
+
+python3 verify_password.py -c config.ini -d data.csv -a https://api.pwne
