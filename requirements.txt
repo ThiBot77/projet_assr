@@ -1,0 +1,7 @@
+pathlib
+configparser
+sys
+requests
+hashlib
+sqlite3
+argparse
